@@ -59,15 +59,15 @@ Meronymy关系也具有 **传递性**，我的一部分的一部分还是我的�
 Meronymy 还有一个性质。如果 P 是 X 的一部分，X 是 Y 的上义词集，那么 P 也是 Y 的一部分。如椅子腿和椅子有整体-部分关系，而扶手椅是一种椅子，那么椅子腿和扶手椅之间也具有整体-部分关系。
 
 
-## Verbs
+## 动词
 ### Troponym
 Troponym是定义在动词概念内的一种关系。如果Y表示比X更具体的动作，则Y是X的Troponym，X是Y的 Hypernym。比如：
 
-- communicate-talk-whisper (声音大小逐渐变得明确)
-- move-jog-run (速度更加明确)
-- like-love-idolize (感情程度更加明确)
+- communicate - talk - whisper (声音大小逐渐变得明确)
+- move - jog - run (速度更加明确)
+- like - love - idolize (感情程度更加明确)
 
-## Adjectives
+## 形容词
 ### Antonymy
 Adjectives 按照 Antonymy (反义词)的关系组织。如 wet-dry、young-old。 
 
@@ -93,11 +93,11 @@ Similar关系具有**对称性**。
 ### Pertainym
 Pertainym 是从属词/导出词的意思。一个形容词如果是从某个名词中导出的，则这个形容词是那个名词的Pertainym。如 criminal 和 crime 、 musical 和 music。
 
-## Adverbs 
+## 副词
 WordNet 仅仅收录了很少的副词，因为英语里的副词绝大部分都是从形容词导出的。如 strongly, surprisingly。
 
 ## Cross-POS Relations
-WordNet 有 四种 POS (Part Of Speech)，即 Nouns, Verbs, Adjectives 和 Adverbs。大部分关系都是只存在于同一个POS内。还有一部分关系是跨POS的，如：
+WordNet 有 四种 POS (Part Of Speech)，即名词、动词、形容词和副词。大部分关系都是只存在于同一个POS内。还有一部分关系是跨POS的，如：
 
 - \{sleeper, sleeping_car\} is the LOCATION for \{sleep\}
 - \{painter\} is the AGENT of \{paint\}

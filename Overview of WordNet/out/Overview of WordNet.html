@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta name="generator" content="Madoko, version 1.0.3" />
+  <meta name="viewport" content="initial-scale=1.0" />
+  <meta name="author" content="李其迈" />
+  <title>Overview of WordNet</title>
+  <style type="text/css"  class="link">
+  /*# sourceURL=madoko.css */
+  
+  .madoko .toc>.tocblock .tocblock .tocblock {
+    margin-left: 2.25em;
+  }
+  .madoko .toc>.tocblock .tocblock {
+    margin-left: 1.5em;
+  }
+  .madoko .toc-contents>.tocblock>.tocitem {
+    font-weight: bold;
+  }
+  .madoko .toc {
+    margin-top: 1em;
+  }
+  .madoko p.para-continue {
+    margin-bottom: 0pt;
+  }
+  .madoko .para-block+p {
+    margin-top: 0pt;
+  }
+  .madoko ul.para-block, .madoko ol.para-block {
+    margin-top: 0pt;
+    margin-bottom: 0pt;
+  }
+  .madoko ul.para-end, .madoko ol.para-end {
+    margin-bottom: 1em;
+  }
+  .madoko dl {
+    margin-left: 0em;
+  }
+  .madoko blockquote {
+    font-style: italic;
+  }
+  .madoko a.localref {
+    text-decoration: none;
+  }
+  .madoko a.localref:hover {
+    text-decoration: underline;
+  }
+  .madoko .footnotes {
+    font-size: smaller;
+    margin-top: 2em;
+  }
+  .madoko .footnotes hr {
+    width: 50%;
+    text-align: left;
+  }
+  .madoko .footnote { 
+    margin-left: 1em;
+  }
+  .madoko .footnote-before {
+    margin-left: -1em;
+    width: 1em;
+    display: inline-block;
+  }
+  .madoko .align-center, .madoko .align-center>p {
+    text-align: center !important;
+  }
+  .madoko .align-center pre {
+    text-align: left;
+  }
+  .madoko .align-center>* {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .madoko .align-left, .madoko .align-left>p {
+    text-align: left !important;
+  }
+  .madoko .align-left>* {
+    margin-left: 0pt !important;
+    margin-right: auto !important;
+  }
+  .madoko .align-right, .madoko .align-right>p {
+    text-align: right !important;
+  }
+  .madoko .align-right>* {
+    margin-left: auto !important;
+    margin-right: 0pt !important;
+  }
+  .madoko .align-center>table,
+  .madoko .align-left>table,
+  .madoko .align-right>table {
+    text-align: left !important;
+  }
+  .madoko .equation-before {
+    float: right;
+  }
+  .madoko .bibitem {
+    font-size: smaller;
+  }
+  .madoko .bibsearch {
+    font-size: x-small;
+    text-decoration:none;
+    color: black;
+    font-family: "Segoe UI Symbol", Symbola, serif;
+  }
+  .madoko .block, .madoko .figure, .madoko .bibitem, .madoko .equation, .madoko div.math {
+    margin-top: 1ex;
+    margin-bottom: 1ex;
+  }
+  .madoko .figure {
+    padding: 0.5em;
+    margin-left: 0pt;
+    margin-right: 0pt;
+  }
+  .madoko .hidden {
+    display: none;
+  }
+  .madoko .invisible {
+    visibility: hidden;
+  }
+  .madoko.preview .invisible {
+    visibility: visible;
+    opacity: 0.5;
+  }
+  .madoko code.code, .madoko span.code {
+    white-space: pre-wrap;
+  }
+  .madoko hr, hr.madoko {
+    border: none;
+    border-bottom: black solid 1px;
+    margin-bottom: 0.5ex;
+  }
+  .madoko .framed>*:first-child {
+    margin-top: 0pt;
+  }
+  .madoko .framed>*:last-child {
+    margin-bottom: 0pt;
+  }
+  .madoko ul.list-style-type-dash {
+      list-style-type: none !important;
+  }
+  .madoko ul.list-style-type-dash > li:before {
+      content: "\2013"; 
+      position: absolute;
+      margin-left: -1em; 
+  }
+  .madoko table.madoko {
+    border-collapse: collapse;
+  }
+  .madoko td, .madoko th {
+    padding: 0ex 0.5ex;
+    margin: 0pt;
+    vertical-align: top;
+  }
+  .madoko .cell-border-left {
+    border-left: 1px solid black;
+  }
+  .madoko .cell-border-right {
+    border-right: 1px solid black;
+  }
+  .madoko thead>tr:first-child>.cell-line,
+  .madoko tbody:first-child>tr:first-child>.cell-line {
+    border-top: 1px solid black;
+    border-bottom: none;
+  }
+  .madoko .cell-line, .madoko .cell-double-line {
+    border-bottom: 1px solid black;
+    border-top: none;
+  }
+  .madoko .cell-double-line {
+    border-top: 1px solid black;
+    padding-top: 1.5px !important;
+  }
+  .madoko .input-mathpre .MathJax_Display {
+    text-align: left !important;
+  }
+  .madoko div.input-mathpre {
+    text-align: left;
+    margin-top: 1.5ex;
+    margin-bottom: 1ex;
+  }
+  .madoko .math-rendering {
+    color: gray;
+  }
+  .madoko .mathdisplay {
+    text-align: center;
+  }
+  .madoko .pretty table {
+    border-collapse: collapse;
+  }
+  .madoko .pretty td {
+    padding: 0em;
+  }
+  .madoko .pretty td.empty {
+    min-width: 1.5ex;
+  }
+  .madoko .pretty td.expander {
+    width: 100em;
+  }
+  body.madoko, .madoko .serif {
+    font-family: Cambria,"Times New Roman","Liberation Serif","Times",serif;
+  }
+  .madoko .sans-serif {
+    font-family: "Calibri", "Optima", sans-serif;
+  }
+  .madoko .symbol {
+    font-family: "Segoe UI Symbol", Symbola, serif;
+  }
+  body.madoko {  
+    -webkit-text-size-adjust: 100%;       
+    text-rendering: optimizeLegibility;
+  }
+  body.madoko {
+    max-width: 88ex; 
+    margin: 1em auto;
+    padding: 0em 2em;  
+  }
+  body.preview.madoko {
+    padding: 0em 1em;
+  }
+  .madoko p {
+    text-align: justify;
+  }
+  .madoko h1, .madoko h2, .madoko h3, .madoko h4 { 
+    margin-top: 1.22em; 
+    margin-bottom: 1ex;
+  }
+  .madoko h1+p, .madoko h2+p, .madoko h3+p, .madoko h4+p, .madoko h5+p  { 
+    margin-top: 1ex;    
+  }
+  .madoko h5, .madoko h6 { 
+    margin-top: 1ex;
+    font-size: 1em;
+  }
+  .madoko h5 { 
+    margin-bottom: 0.5ex;
+  }
+  .madoko h5 + p {
+    margin-top: 0.5ex;
+  }
+  .madoko h6 { 
+    margin-bottom: 0pt;
+  }
+  .madoko h6 + p {
+    margin-top: 0pt;
+  }
+  .madoko pre, .madoko code, .madoko kbd, .madoko samp, .madoko tt, 
+  .madoko .monospace, .madoko .token-indent, .madoko .reveal pre, .madoko .reveal code, .madoko .email {
+    font-family: Consolas,"Andale Mono WT","Andale Mono",Lucida Console,Monaco,monospace,monospace;
+    font-size: 0.85em;
+  }
+  .madoko pre code, .madoko .token-indent {
+    font-size: 0.95em;
+  }
+  .madoko pre code {
+    font-family: inherit !important;
+  }
+  .madoko ol.linenums li {
+    background-color: white;
+    list-style-type: decimal;
+  }
+  .madoko .remote {
+    background-color: #F0FFF0;
+  }
+  .madoko .remote + * {
+    margin-top: 0pt;
+  }
+  @media print {
+    body.madoko {
+      font-size: 10pt;
+    }
+    @page {
+      margin: 1in 1.5in;
+    }
+  }
+  @media only screen and (max-device-width:1024px) {
+    body.madoko {
+      padding: 0em 0.5em;    
+    }
+    .madoko li {
+      text-align: left;
+    }
+  }
+  
+    </style>
+  
+  </head>
+<body class="madoko">
+
+<div class="body madoko" lang="zh-Hans-CN" style="line-adjust:0">
+
+<div class="titleblock align-center para-block" style="text-align:center;line-adjust:0">
+<div class="titleheader align-center" style="text-align:center;line-adjust:0">
+<div class="title para-block" style="font-size:xx-large;font-weight:bold;margin-bottom:0.5ex;line-adjust:0">Overview of WordNet</div></div>
+<div class="authors align-center" style="text-align:center;width:80%;line-adjust:0"><table class="authorrow columns block" style="margin-top:2ex;width:100%;line-adjust:0">
+<tbody><tr><td class="author column" style="text-align:center;line-adjust:0">
+<div class="authorname" style="font-size:large;line-adjust:0">李其迈</div></td></tr></tbody></table></div></div><span data-line=""></span>
+<nav class="toc toc-contents"><h2 id="sec-contents" class="clearnum h1 heading-contents" data-heading-depth="1" style="display:block">Contents</h2>
+<div class="tocblock tocblock1">
+<div class="tocitem tocitem1" data-toc-target="sec-whats-wordnet" data-toc-depth="1" data-toc-line="[1]{.heading-label}.&#8194;What\&#39;s WordNet" style="toctarget:sec-whats-wordnet"><a href="#sec-whats-wordnet" class="localref"><span class="heading-label">1</span>.&#8194;What&#39;s WordNet</a></div>
+<div class="tocitem tocitem1" data-toc-target="sec-wordnet-" data-toc-depth="1" data-toc-line="[2]{.heading-label}.&#8194;WordNet \u7684\u57FA\u672C\u7ED3\u6784" style="toctarget:sec-wordnet-"><a href="#sec-wordnet-" class="localref"><span class="heading-label">2</span>.&#8194;WordNet 的基本结构</a></div>
+<div class="tocitem tocitem1" data-toc-target="sec-wordnet-semantic-relation" data-toc-depth="1" data-toc-line="[3]{.heading-label}.&#8194;WordNet \u4E2D\u7684 Semantic Relation" style="toctarget:sec-wordnet-semantic-relation"><a href="#sec-wordnet-semantic-relation" class="localref"><span class="heading-label">3</span>.&#8194;WordNet 中的 Semantic Relation</a></div>
+<div class="tocblock tocblock2">
+<div class="tocitem tocitem2" data-toc-target="section" data-toc-depth="2" data-toc-line="[3.1]{.heading-label}.&#8194;\u540D\u8BCD" style="toctarget:section"><a href="#section" class="localref"><span class="heading-label">3.1</span>.&#8194;名词</a></div>
+<div class="tocblock tocblock3">
+<div class="tocitem tocitem3" data-toc-target="sec-super-subordinate-relation" data-toc-depth="3" data-toc-line="[3.1.1]{.heading-label}.&#8194;Super-Subordinate Relation" style="toctarget:sec-super-subordinate-relation"><a href="#sec-super-subordinate-relation" class="localref"><span class="heading-label">3.1.1</span>.&#8194;Super-Subordinate Relation</a></div>
+<div class="tocitem tocitem3" data-toc-target="sec-meronymy" data-toc-depth="3" data-toc-line="[3.1.2]{.heading-label}.&#8194;Meronymy" style="toctarget:sec-meronymy"><a href="#sec-meronymy" class="localref"><span class="heading-label">3.1.2</span>.&#8194;Meronymy</a></div></div>
+<div class="tocitem tocitem2" data-toc-target="section" data-toc-depth="2" data-toc-line="[3.2]{.heading-label}.&#8194;\u52A8\u8BCD" style="toctarget:section"><a href="#section" class="localref"><span class="heading-label">3.2</span>.&#8194;动词</a></div>
+<div class="tocblock tocblock3">
+<div class="tocitem tocitem3" data-toc-target="sec-troponym" data-toc-depth="3" data-toc-line="[3.2.1]{.heading-label}.&#8194;Troponym" style="toctarget:sec-troponym"><a href="#sec-troponym" class="localref"><span class="heading-label">3.2.1</span>.&#8194;Troponym</a></div></div>
+<div class="tocitem tocitem2" data-toc-target="section" data-toc-depth="2" data-toc-line="[3.3]{.heading-label}.&#8194;\u5F62\u5BB9\u8BCD" style="toctarget:section"><a href="#section" class="localref"><span class="heading-label">3.3</span>.&#8194;形容词</a></div>
+<div class="tocblock tocblock3">
+<div class="tocitem tocitem3" data-toc-target="sec-antonymy" data-toc-depth="3" data-toc-line="[3.3.1]{.heading-label}.&#8194;Antonymy" style="toctarget:sec-antonymy"><a href="#sec-antonymy" class="localref"><span class="heading-label">3.3.1</span>.&#8194;Antonymy</a></div>
+<div class="tocitem tocitem3" data-toc-target="sec-similar" data-toc-depth="3" data-toc-line="[3.3.2]{.heading-label}.&#8194;Similar" style="toctarget:sec-similar"><a href="#sec-similar" class="localref"><span class="heading-label">3.3.2</span>.&#8194;Similar</a></div>
+<div class="tocitem tocitem3" data-toc-target="sec-antonymy-similar-" data-toc-depth="3" data-toc-line="[3.3.3]{.heading-label}.&#8194;Antonymy \u548C Similar \u7684\u5178\u578B\u6A21\u5F0F" style="toctarget:sec-antonymy-similar-"><a href="#sec-antonymy-similar-" class="localref"><span class="heading-label">3.3.3</span>.&#8194;Antonymy 和 Similar 的典型模式</a></div>
+<div class="tocitem tocitem3" data-toc-target="sec-pertainym" data-toc-depth="3" data-toc-line="[3.3.4]{.heading-label}.&#8194;Pertainym" style="toctarget:sec-pertainym"><a href="#sec-pertainym" class="localref"><span class="heading-label">3.3.4</span>.&#8194;Pertainym</a></div></div>
+<div class="tocitem tocitem2" data-toc-target="section" data-toc-depth="2" data-toc-line="[3.4]{.heading-label}.&#8194;\u526F\u8BCD" style="toctarget:section"><a href="#section" class="localref"><span class="heading-label">3.4</span>.&#8194;副词</a></div>
+<div class="tocitem tocitem2" data-toc-target="sec-cross-pos-relations" data-toc-depth="2" data-toc-line="[3.5]{.heading-label}.&#8194;Cross-POS Relations" style="toctarget:sec-cross-pos-relations"><a href="#sec-cross-pos-relations" class="localref"><span class="heading-label">3.5</span>.&#8194;Cross-POS Relations</a></div></div></div></nav><h2 id="sec-whats-wordnet" class="h1" data-heading-depth="1" style="display:block"><span class="heading-before"><span class="heading-label">1</span>.&#8194;</span>What&#39;s WordNet</h2>
+<p class="p noindent">摘自官网：
+</p>
+<blockquote>
+
+<p class="p noindent">WordNet® is a large <strong class="strong-star2">lexical database</strong> of English. Nouns, verbs, adjectives and adverbs are grouped into <strong class="strong-star2">sets of cognitive synonyms (synsets)</strong>, each expressing a distinct <strong class="strong-star2">concept</strong>. 
+</p></blockquote><h2 id="sec-wordnet-" class="h1" data-heading-depth="1" style="display:block"><span class="heading-before"><span class="heading-label">2</span>.&#8194;</span>WordNet 的基本结构</h2>
+<p class="p noindent">首先必须意识到，一个单词是有多个意思的。这就引出了WordNet中的三个重要概念：
+</p>
+<ul class="ul list-dash compact">
+<li class="li ul-li list-dash-li compact-li"><strong class="strong-star2">Concept</strong> &#8211; 概念
+</li>
+<li class="li ul-li list-dash-li compact-li"><strong class="strong-star2">WordForm</strong>     &#8211; 单词形式
+</li>
+<li class="li ul-li list-dash-li compact-li"><strong class="strong-star2">Sets of Cognitive Synonyms (synsets)</strong> &#8211; 同义词集，congnitive synonym是语言学术语，指严格的同义词，即任何时候都interchange的两个单词。
+</li></ul>
+
+<p class="p noindent">一个 word form 是指一个特定的字母序列，如 dog, cat 等，与单词的意思很接近。 
+</p>
+<p class="p indent">Concept 就是指概念。由于单词的多义性，一个 WordForm 会对应多个Concept。 一个Concept也会对应多个 WordForm，比如 car 和 automobile 都有“汽车”的含义。 Concept 和 WordForm是多对多的关系。WordNet中，每个(Concept,WordForm)二元组是唯一的。
+</p>
+<p class="p indent">Synset 是同义词集。这个同义的要求很严格，必须是cognitive synonym，在任何语境下都interchangeable，保证了每个 Synset 代表且仅代表一个 Concept。 Synset 和 Concept 是一一对应的关系。具有同一个 Concept 的所有 WordForm 构成一个 Synset。 后文并不会特别区分 Synset 和 Concept 的区别。 Synset 和 WordForm 是多对多关系。一个 WordForm 可以出现在多个synset中。
+</p>
+<p class="p indent">我们再回去读读官网上对WordNet的描述，这次就能比较明白的理解它的含义了。
+</p>
+<blockquote>
+
+<p class="p noindent">WordNet® is a large <strong class="strong-star2">lexical database</strong> of English. Nouns, verbs, adjectives and adverbs are grouped into <strong class="strong-star2">sets of cognitive synonyms (synsets)</strong>, each expressing a distinct <strong class="strong-star2">concept</strong>. 
+</p></blockquote>
+<p class="p noindent">即WordNet 是一个 lexical database，是个单词库。单词与单词组成了sets of cognitive synonyms (synsets)。每个 Synset 代表了一个独一无二的 Concept。 这就是 WordNet 最基本的结构。
+</p><h2 id="sec-wordnet-semantic-relation" class="h1" data-heading-depth="1" style="display:block"><span class="heading-before"><span class="heading-label">3</span>.&#8194;</span>WordNet 中的 Semantic Relation</h2>
+<p class="p noindent">WordNet 里，单词与单词组合成 Synset，Synset 和 Synset 之间又存在着语义上的Relation。也就是说，WordNet里面语义上的关系是构建在 Synset 上的，并不直接构建在 WordForm 上，这也就是这些关系被称为 Semantic Relation 的原因。 如果把 WordNet 看成 Knowledge Graph 的话，图中节点和 Synset/Concept 一一对应。
+</p>
+<p class="p indent">Semantic Relation 有很多，而且很多 Relation 在语言学上都是有明确定义的，比如 super-subordinate relation（上位词与下位词的关系），meronymy（部分整体关系）等。 这里也能看出 WordNet 有着很浓厚的语言学色彩，是语言学和计算机科学的交叉学科-计算语言学的产物。
+</p>
+<p class="p indent">下面讲解几个比较重要的Semantic Relation。
+</p><h3 id="section" class="h2" data-heading-depth="2" style="display:block"><span class="heading-before"><span class="heading-label">3.1</span>.&#8194;</span>名词</h3><h4 id="sec-super-subordinate-relation" class="h3" data-heading-depth="3" style="display:block"><span class="heading-before"><span class="heading-label">3.1.1</span>.&#8194;</span>Super-Subordinate Relation</h4>
+<p class="p noindent">Super-subordinate Relation 也被称作 Hypernymy-Hyponymy 关系 (上义词/上位词 和下义词/下位词) 或 ISA Relation。这个关系是仅存在于名词Synset之间的一种关系。下义词集的外延完全被上义词集包含。 如 Synset {furniture, piece_of_furniture} 是 Synset {bed} 的上义词集，因为 bed 是一种 furniture/piece_of_furniture。 这种关系很形象的被称为 ISA relation。 
+</p>
+<p class="p indent">关系本身具有<strong class="strong-star2">传递性)</strong>，下义词集的下义词集还是我的下义词集。上义词集的上义词集还是我的上义词集。
+</p>
+<p class="p indent">这个关系不成环，再考虑到它的传递性， Super-Subordinate Relation 其实定义了一个<strong class="strong-star2">偏序集</strong>。 
+</p>
+<p class="p indent">有许多Synset是没有上义词集的，比如动词、形容词的Synset，它们在这个偏序集中就是一个个孤立的节点。而凡是有上义词集的 Synset 则一定有 <strong class="strong-star2">{entity}</strong> 这个上义词集(集)。 除去那些孤立节点，这个偏序集就只剩下一颗树，这棵树的根就是{entity}。 
+</p>
+<p class="p indent">WordNet 还区分 <strong class="strong-star2">Common Noun(总称)</strong> 和 <strong class="strong-star2">Instance(实例)</strong> 的区别。 如 Barack Obama 是实例，而 President 是总称。 在上面提到的树中，实例总是位于叶子节点的位置。 但是叶子节点并不总是实例，因为有些概念在数据库中没有收录实例。 如 {Morris chair}，我想世界上没有哪个 Morris chair (莫里斯椅) 出名到能被收录进 WordNet。
+</p><h4 id="sec-meronymy" class="h3" data-heading-depth="3" style="display:block"><span class="heading-before"><span class="heading-label">3.1.2</span>.&#8194;</span>Meronymy</h4>
+<p class="p noindent">Meronymy 又被称为 Part-Whole/Part-Holonym Relation，刻画的整体和部分的关系。比如椅子腿和椅子。这个关系也是仅存在于名词之间的一种关系。
+</p>
+<p class="p indent">Meronymy关系也具有 <strong class="strong-star2">传递性</strong>，我的一部分的一部分还是我的一部分。同样不成环，它也定义了一个<strong class="strong-star2">偏序集</strong>，但是里面有不止棵树。
+</p>
+<p class="p indent">Meronymy 还有一个性质。如果 P 是 X 的一部分，X 是 Y 的上义词集，那么 P 也是 Y 的一部分。如椅子腿和椅子有整体-部分关系，而扶手椅是一种椅子，那么椅子腿和扶手椅之间也具有整体-部分关系。
+</p><h3 id="section" class="h2" data-heading-depth="2" style="display:block"><span class="heading-before"><span class="heading-label">3.2</span>.&#8194;</span>动词</h3><h4 id="sec-troponym" class="h3" data-heading-depth="3" style="display:block"><span class="heading-before"><span class="heading-label">3.2.1</span>.&#8194;</span>Troponym</h4>
+<p class="p noindent">Troponym是定义在动词概念内的一种关系。如果Y表示比X更具体的动作，则Y是X的Troponym，X是Y的 Hypernym。比如：
+</p>
+<ul class="ul list-dash compact">
+<li class="li ul-li list-dash-li compact-li">communicate - talk - whisper (声音大小逐渐变得明确)
+</li>
+<li class="li ul-li list-dash-li compact-li">move - jog - run (速度更加明确)
+</li>
+<li class="li ul-li list-dash-li compact-li">like - love - idolize (感情程度更加明确)
+</li></ul>
+<h3 id="section" class="h2" data-heading-depth="2" style="display:block"><span class="heading-before"><span class="heading-label">3.3</span>.&#8194;</span>形容词</h3><h4 id="sec-antonymy" class="h3" data-heading-depth="3" style="display:block"><span class="heading-before"><span class="heading-label">3.3.1</span>.&#8194;</span>Antonymy</h4>
+<p class="p noindent">Adjectives 按照 Antonymy (反义词)的关系组织。如 wet-dry、young-old。 
+</p>
+<p class="p indent">Antonymy关系具有<strong class="strong-star2">对称性</strong>。
+</p><h4 id="sec-similar" class="h3" data-heading-depth="3" style="display:block"><span class="heading-before"><span class="heading-label">3.3.2</span>.&#8194;</span>Similar</h4>
+<p class="p noindent">对立的两个极端形容词，如 wet-dry，都会相似于一个或多个其他形容词。如 dry 相似于 parched, arid, dessicated 和 bone-dry，而 wet 相似于 soggy, waterlogged 等。
+</p>
+<p class="p indent">Similar关系具有<strong class="strong-star2">对称性</strong>。
+</p><h4 id="sec-antonymy-similar-" class="h3" data-heading-depth="3" style="display:block"><span class="heading-before"><span class="heading-label">3.3.3</span>.&#8194;</span>Antonymy 和 Similar 的典型模式</h4>
+<pre class="para-block pre-fenced pre-fenced3" style="display:block"><code>           parched \      Antonymy      / soggy
+        dessicated - dry ---------- wet  
+          bone-dry /                    \ waterlogged</code></pre>
+<p class="p noindent para-continued">上图展示了两组对立形容词概念的关系模式。“干”和“湿”两组概念，各自有一个 Head Synsets ，“干”的 Head Synsets 是{dry}，其它表示“干”的概念都相似于{dry}。 “湿”的 Head Synsets 是{wet}，其它表示“湿”的概念都相似于{wet}。 两个 Head Synsets 之间是Antonymy的关系，非 Head Synsets 不存在直接的反义词关系。但是通过如下的关系模式
+</p>
+<pre class="para-block pre-fenced pre-fenced3" style="display:block"><code>        X - SimilarTo - HeadSynsets - Antonymy - HeadSynsets - SimilarTo - Y</code></pre>
+<p class="p noindent para-continued">间接反映了X和Y之间的反义词关系。这就是WordNet中对于反义关系的组织方式。
+</p><h4 id="sec-pertainym" class="h3" data-heading-depth="3" style="display:block"><span class="heading-before"><span class="heading-label">3.3.4</span>.&#8194;</span>Pertainym</h4>
+<p class="p noindent">Pertainym 是从属词/导出词的意思。一个形容词如果是从某个名词中导出的，则这个形容词是那个名词的Pertainym。如 criminal 和 crime 、 musical 和 music。
+</p><h3 id="section" class="h2" data-heading-depth="2" style="display:block"><span class="heading-before"><span class="heading-label">3.4</span>.&#8194;</span>副词</h3>
+<p class="p noindent">WordNet 仅仅收录了很少的副词，因为英语里的副词绝大部分都是从形容词导出的。如 strongly, surprisingly。
+</p><h3 id="sec-cross-pos-relations" class="h2" data-heading-depth="2" style="display:block"><span class="heading-before"><span class="heading-label">3.5</span>.&#8194;</span>Cross-POS Relations</h3>
+<p class="p noindent">WordNet 有 四种 POS (Part Of Speech)，即名词、动词、形容词和副词。大部分关系都是只存在于同一个POS内。还有一部分关系是跨POS的，如：
+</p>
+<ul class="ul list-dash compact">
+<li class="li ul-li list-dash-li compact-li">{sleeper, sleeping_car} is the LOCATION for {sleep}
+</li>
+<li class="li ul-li list-dash-li compact-li">{painter} is the AGENT of {paint}
+</li>
+<li class="li ul-li list-dash-li compact-li">{painting, picture} is the RESULT of {paint}.
+</li></ul>
+<span data-line=""></span></div>
+</body>
+
+</html>
