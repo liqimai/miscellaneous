@@ -1,0 +1,105 @@
+.madoko { html-lang: zh-Hans-CN; }
+.cn { html-lang: zh-Hans-CN }
+
+Title         : Overview of WordNet
+Author        : 李其迈
+Logo          : False
+
+[TITLE]
+
+[TOC]
+
+# What's WordNet 
+摘自官网：
+>WordNet® is a large **lexical database** of English. Nouns, verbs, adjectives and adverbs are grouped into **sets of cognitive synonyms (synsets)**, each expressing a distinct **concept**. 
+
+# WordNet 的基本结构
+首先必须意识到，一个单词是有多个意思的。这就引出了WordNet中的三个重要概念：
+
+- **Concept** -- 概念
+- **WordForm** 	-- 单词形式
+- **Sets of Cognitive Synonyms (synsets)** -- 同义词集，congnitive synonym是语言学术语，指严格的同义词，即任何时候都interchange的两个单词。
+
+一个 word form 是指一个特定的字母序列，如 dog, cat 等，与单词的意思很接近。 
+
+Concept 就是指概念。由于单词的多义性，一个 WordForm 会对应多个Concept。 一个Concept也会对应多个 WordForm，比如 car 和 automobile 都有“汽车”的含义。 Concept 和 WordForm是多对多的关系。WordNet中，每个(Concept,WordForm)二元组是唯一的。
+
+Synset 是同义词集。这个同义的要求很严格，必须是cognitive synonym，在任何语境下都interchangeable，保证了每个 Synset 代表且仅代表一个 Concept。 Synset 和 Concept 是一一对应的关系。具有同一个 Concept 的所有 WordForm 构成一个 Synset。 后文并不会特别区分 Synset 和 Concept 的区别。 Synset 和 WordForm 是多对多关系。一个 WordForm 可以出现在多个synset中。
+
+我们再回去读读官网上对WordNet的描述，这次就能比较明白的理解它的含义了。
+
+>WordNet® is a large **lexical database** of English. Nouns, verbs, adjectives and adverbs are grouped into **sets of cognitive synonyms (synsets)**, each expressing a distinct **concept**. 
+
+即WordNet 是一个 lexical database，是个单词库。单词与单词组成了sets of cognitive synonyms (synsets)。每个 Synset 代表了一个独一无二的 Concept。 这就是 WordNet 最基本的结构。
+
+# WordNet 中的 Semantic Relation
+WordNet 里，单词与单词组合成 Synset，Synset 和 Synset 之间又存在着语义上的Relation。也就是说，WordNet里面语义上的关系是构建在 Synset 上的，并不直接构建在 WordForm 上，这也就是这些关系被称为 Semantic Relation 的原因。 如果把 WordNet 看成 Knowledge Graph 的话，图中节点和 Synset/Concept 一一对应。
+
+Semantic Relation 有很多，而且很多 Relation 在语言学上都是有明确定义的，比如 super-subordinate relation（上位词与下位词的关系），meronymy（部分整体关系）等。 这里也能看出 WordNet 有着很浓厚的语言学色彩，是语言学和计算机科学的交叉学科-计算语言学的产物。
+
+下面讲解几个比较重要的Semantic Relation。
+
+## 名词
+### Super-Subordinate Relation
+Super-subordinate Relation 也被称作 Hypernymy-Hyponymy 关系 (上义词/上位词 和下义词/下位词) 或 ISA Relation。这个关系是仅存在于名词Synset之间的一种关系。下义词集的外延完全被上义词集包含。 如 Synset {furniture, piece_of_furniture} 是 Synset {bed} 的上义词集，因为 bed 是一种 furniture/piece_of_furniture。 这种关系很形象的被称为 ISA relation。 
+
+关系本身具有**传递性)**，下义词集的下义词集还是我的下义词集。上义词集的上义词集还是我的上义词集。
+
+这个关系不成环，再考虑到它的传递性， Super-Subordinate Relation 其实定义了一个**偏序集**。 
+
+有许多Synset是没有上义词集的，比如动词、形容词的Synset，它们在这个偏序集中就是一个个孤立的节点。而凡是有上义词集的 Synset 则一定有 **{entity}** 这个上义词集(集)。 除去那些孤立节点，这个偏序集就只剩下一颗树，这棵树的根就是{entity}。 
+
+WordNet 还区分 **Common Noun(总称)** 和 **Instance(实例)** 的区别。 如 Barack Obama 是实例，而 President 是总称。 在上面提到的树中，实例总是位于叶子节点的位置。 但是叶子节点并不总是实例，因为有些概念在数据库中没有收录实例。 如 {Morris chair}，我想世界上没有哪个 Morris chair (莫里斯椅) 出名到能被收录进 WordNet。
+
+### Meronymy
+Meronymy 又被称为 Part-Whole/Part-Holonym Relation，刻画的整体和部分的关系。比如椅子腿和椅子。这个关系也是仅存在于名词之间的一种关系。
+
+Meronymy关系也具有 **传递性**，我的一部分的一部分还是我的一部分。同样不成环，它也定义了一个**偏序集**，但是里面有不止棵树。
+
+Meronymy 还有一个性质。如果 P 是 X 的一部分，X 是 Y 的上义词集，那么 P 也是 Y 的一部分。如椅子腿和椅子有整体-部分关系，而扶手椅是一种椅子，那么椅子腿和扶手椅之间也具有整体-部分关系。
+
+
+## Verbs
+### Troponym
+Troponym是定义在动词概念内的一种关系。如果Y表示比X更具体的动作，则Y是X的Troponym，X是Y的 Hypernym。比如：
+
+- communicate-talk-whisper (声音大小逐渐变得明确)
+- move-jog-run (速度更加明确)
+- like-love-idolize (感情程度更加明确)
+
+## Adjectives
+### Antonymy
+Adjectives 按照 Antonymy (反义词)的关系组织。如 wet-dry、young-old。 
+
+Antonymy关系具有**对称性**。
+
+### Similar
+对立的两个极端形容词，如 wet-dry，都会相似于一个或多个其他形容词。如 dry 相似于 parched, arid, dessicated 和 bone-dry，而 wet 相似于 soggy, waterlogged 等。
+
+Similar关系具有**对称性**。
+
+### Antonymy 和 Similar 的典型模式
+```
+		   parched \      Antonymy      / soggy
+		dessicated - dry ---------- wet  
+		  bone-dry /                    \ waterlogged
+```
+上图展示了两组对立形容词概念的关系模式。“干”和“湿”两组概念，各自有一个 Head Synsets ，“干”的 Head Synsets 是{dry}，其它表示“干”的概念都相似于{dry}。 “湿”的 Head Synsets 是{wet}，其它表示“湿”的概念都相似于{wet}。 两个 Head Synsets 之间是Antonymy的关系，非 Head Synsets 不存在直接的反义词关系。但是通过如下的关系模式
+```
+        X - SimilarTo - HeadSynsets - Antonymy - HeadSynsets - SimilarTo - Y
+```
+间接反映了X和Y之间的反义词关系。这就是WordNet中对于反义关系的组织方式。
+
+### Pertainym
+Pertainym 是从属词/导出词的意思。一个形容词如果是从某个名词中导出的，则这个形容词是那个名词的Pertainym。如 criminal 和 crime 、 musical 和 music。
+
+## Adverbs 
+WordNet 仅仅收录了很少的副词，因为英语里的副词绝大部分都是从形容词导出的。如 strongly, surprisingly。
+
+## Cross-POS Relations
+WordNet 有 四种 POS (Part Of Speech)，即 Nouns, Verbs, Adjectives 和 Adverbs。大部分关系都是只存在于同一个POS内。还有一部分关系是跨POS的，如：
+
+- \{sleeper, sleeping_car\} is the LOCATION for \{sleep\}
+- \{painter\} is the AGENT of \{paint\}
+- \{painting, picture\} is the RESULT of \{paint\}.
+
